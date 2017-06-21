@@ -58,13 +58,28 @@ ns('test.object', null);  // ->true，删除成功
 
 ### 在命名空间注册类
 ```js
-//注册
-var Animal = ns('test.animal', function () {
-});
-Animal.prototype.bark = function (msg) {
-    alert(msg)
-};
-//使用
-var anm = new (ns('test.animal'))();
-anm.bark('ao-!');
+//注册 test.animal
+(function () {
+    var Animal = ns('test.animal', function () {
+    });
+    Animal.prototype.bark = function (msg) {
+        alert(msg)
+    };
+})();
+//注册 test.plant
+(function () {
+    var Plant = ns('test.plant', function (type) {
+        this._type = type;
+    });
+})();
+//读取
+(function () {
+    //命名空间引用
+    var Animal = ns('test.animal');
+    var Plant = ns('test.plant');
+    //业务逻辑
+    var anm = new Animal();
+    anm.bark('ao-!');
+    var tree = new Plant('tree');
+})();
 ```
