@@ -1,4 +1,4 @@
-# namescape
+# namescape.js
 
 前些年流传的 JS 命名空间的一种改进版本
 
