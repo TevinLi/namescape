@@ -48,8 +48,8 @@ ns('test.something');
 ns.addProtect('test.something');
 //对保护对象进行操作
 ns('test.something', [1, 2]);  //报错，不可以覆盖
-ns('test.something', null);  //报错，不可以删除
-ns('test', null);  //报错，子级包含受保护的项
+ns('test.something', null);    //报错，不可以删除
+ns('test', null);              //报错，子级包含受保护的项
 //取消保护
 ns.removeProtect('test.something');
 //删除
