@@ -38,35 +38,35 @@
 ### 在命名空间注册普通对象
 ```js
 //注册
-ns('test.object', {
+ns('test.something', {
     testA: 1,
     testB: 2
 });
 //读取
-ns('test.object');
+ns('test.something');
 //添加保护
-ns.addProtect('test.object');
+ns.addProtect('test.something');
 //对保护对象进行操作
-ns('test.object', [1, 2]);  //报错，不可以覆盖
-ns('test.object', null);  //报错，不可以删除
-ns('test', null);  //报错，子级包含保护项
+ns('test.something', [1, 2]);  //报错，不可以覆盖
+ns('test.something', null);  //报错，不可以删除
+ns('test', null);  //报错，子级包含受保护的项
 //取消保护
-ns.removeProtect('test.object');
+ns.removeProtect('test.something');
 //删除
-ns('test.object', null);  // ->true，删除成功 
+ns('test.something', null);  // ->true，删除成功 
 ```
 
 ### 在命名空间注册类
 ```js
 //注册 test.plant
 (function () {
-    var Plant = ns('test.plant', function (type) {
+    var Plant = ns('test.Plant', function (type) {
         this._type = type;
     });
 })();
 //注册 test.animal
 (function () {
-    var Animal = ns('test.animal', function () {
+    var Animal = ns('test.Animal', function () {
     });
     Animal.prototype.bark = function (msg) {
         alert(msg)
@@ -75,8 +75,8 @@ ns('test.object', null);  // ->true，删除成功
 //读取
 (function () {
     //命名空间引用
-    var Plant = ns('test.plant');
-    var Animal = ns('test.animal');
+    var Plant = ns('test.Plant');
+    var Animal = ns('test.Animal');
     //业务逻辑
     var tree = new Plant('tree');
     var anm = new Animal();
