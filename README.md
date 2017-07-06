@@ -57,15 +57,23 @@ ns('test.something', null);  // ->true，删除成功
 ```
 
 ### 在命名空间注册类
+支持使用 JSDoc 注释 `@memberof ns`，在类似 WebStorm 的 IDE 中注册文件跳转或位置跳转
 ```js
-//注册 test.plant
+//注册
 (function () {
+    /**
+     * 命名空间注册 Plant 声明
+     * @memberof ns.test
+     */
     var Plant = ns('test.Plant', function (type) {
         this._type = type;
     });
 })();
-//注册 test.animal
 (function () {
+    /**
+     * 命名空间注册 Animal 声明
+     * @memberof ns.test
+     */
     var Animal = ns('test.Animal', function () {
     });
     Animal.prototype.bark = function (msg) {
@@ -75,11 +83,17 @@ ns('test.something', null);  // ->true，删除成功
 //读取
 (function () {
     //命名空间引用
-    var Plant = ns('test.Plant');
-    var Animal = ns('test.Animal');
+    var Plant = ns('test.Plant');    //此处可跳转
+    var Animal = ns('test.Animal');  //此处可跳转
     //业务逻辑
     var tree = new Plant('tree');
     var anm = new Animal();
-    anm.bark('ao-!');
+    /**
+     * @param {Animal} animal        //此处可跳转
+     */
+    function voice(animal) {
+        animal.bark('ao-!')
+    }
+    voice(anm);
 })();
 ```

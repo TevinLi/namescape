@@ -11,7 +11,11 @@
 
     'use strict';
 
-    //挂载位置
+    /**
+     * 挂载位置
+     * @namespace ns
+     * @type {{}}
+     */
     var namescape = {};
 
     // 保护的命名空间
